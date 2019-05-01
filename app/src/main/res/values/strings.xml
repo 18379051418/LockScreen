@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Exercise3</string>
+    <string name="screen_on">亮屏广播接收器</string>
+    <string name="screen_off">熄屏广播接收器</string>
+
+    <string name="quit">退出</string>
+</resources>

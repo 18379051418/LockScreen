@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="normalColor" format="color" />
+    <attr name="selectColor" format="color" />
+    <attr name="correctColor" format="color" />
+    <attr name="wrongColor" format="color" />
+    <attr name="lineWidth" format="dimension" />
+
+    <declare-styleable name="LockView">
+        <attr name="normalColor" />
+        <attr name="selectColor" />
+        <attr name="correctColor" />
+        <attr name="wrongColor" />
+        <attr name="lineWidth" />
+    </declare-styleable>
+</resources>

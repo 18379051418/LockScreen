@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xzq.eg.exercise3.MainActivity">
+
+    <com.xzq.eg.exercise3.views.LockView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:correctColor="#00FF00"
+        app:lineWidth="20dp"
+        app:normalColor="#888888"
+        app:selectColor="#FFFF00"
+        app:wrongColor="#FF0000" />
+</RelativeLayout>

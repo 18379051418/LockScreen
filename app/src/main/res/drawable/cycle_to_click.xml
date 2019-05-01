@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    android:useLevel="false">
+
+    <solid android:color="@color/colorToClick" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/colorToClick" />
+
+    <size
+        android:width="30dp"
+        android:height="30dp" />
+</shape>
