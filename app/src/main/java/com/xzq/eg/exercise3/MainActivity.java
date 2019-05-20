@@ -8,6 +8,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.xzq.eg.exercise3.base.BaseActivity;
@@ -15,16 +16,25 @@ import com.xzq.eg.exercise3.model.LockScreenModel;
 import com.xzq.eg.exercise3.service.LockScreenService;
 import com.xzq.eg.exercise3.views.LockView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     public LockView lockView;
+    @BindView(R.id.clear_pwd)
+    Button btClearPwd;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        unbinder = ButterKnife.bind(this);
         startLockScreenService();
+        btClearPwd.setOnClickListener(v -> clearPwd());
     }
 
     private void startLockScreenService() {
@@ -51,6 +61,10 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    public void clearPwd() {
+        LockScreenModel.getInstance().clearPwd();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -58,6 +72,12 @@ public class MainActivity extends BaseActivity {
         lockView = findViewById(R.id.lv);
         // 初始化事件
         initEvents();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 
     /**

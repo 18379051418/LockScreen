@@ -33,10 +33,10 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver implements View.O
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
-            Log.d(TAG, "onReceive: screen on");
-            showLockScreen(context);
+            Log.d(TAG, "onReceive: screen on : " + System.currentTimeMillis());
         } else if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-            Log.d(TAG, "onReceive: screen off");
+            Log.d(TAG, "onReceive: screen off : " + System.currentTimeMillis());
+            showLockScreen(context);
         }
     }
 
@@ -59,6 +59,9 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver implements View.O
         btQuit.setOnClickListener(this);
         LockView lockView = floatWindow.findViewById(R.id.lv);
         lockView.setOnUnlockListener(this);
+        Log.d("test", "test:" + LockScreenModel.getInstance().getPwd());
+        if (LockScreenModel.getInstance().getPwd().equals("error"))
+            lockView.setVisibility(View.GONE);
 
         //设置LayoutParams
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
@@ -99,6 +102,10 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver implements View.O
 
     @Override
     public void onFailure() {
+
+    }
+
+    private void animatorInit(ConstraintLayout constraintLayout, int height) {
 
     }
 }

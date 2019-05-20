@@ -15,4 +15,11 @@
         app:normalColor="#888888"
         app:selectColor="#FFFF00"
         app:wrongColor="#FF0000" />
+
+    <Button
+        android:id="@+id/clear_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_pwd"
+        android:textSize="20sp" />
 </RelativeLayout>

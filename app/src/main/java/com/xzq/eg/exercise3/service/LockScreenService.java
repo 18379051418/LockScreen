@@ -21,6 +21,11 @@ public class LockScreenService extends Service {
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return super.onStartCommand(intent, Service.START_FLAG_RETRY, startId);
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
     }

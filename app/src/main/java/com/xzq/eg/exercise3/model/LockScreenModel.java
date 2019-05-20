@@ -35,6 +35,14 @@ public class LockScreenModel {
                 .apply();
     }
 
+    //清除密码
+    public void clearPwd() {
+        SharedPreferences sp = App.INSTANCE.getSharedPreferences("soduku", Context.MODE_PRIVATE);
+        sp.edit()
+                .putString("pwd", "error")
+                .apply();
+    }
+
     private static class SingleInstanceHandler {
         private static LockScreenModel INSTANCE = new LockScreenModel();
     }
