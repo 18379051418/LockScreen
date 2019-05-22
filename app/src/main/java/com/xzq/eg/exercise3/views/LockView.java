@@ -318,7 +318,7 @@ public class LockView extends View {
     }
 
     public void clear() {
-        setWholePathState(STATE_NORMAL);
+        reset();
     }
 
     @Override
