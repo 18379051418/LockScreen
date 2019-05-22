@@ -113,6 +113,9 @@ public class LockView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        //重置
+        rectList.clear();
+        pathList.clear();
         width = getMeasuredWidth();
         height = getMeasuredHeight();
     }
@@ -314,9 +317,13 @@ public class LockView extends View {
         return super.performClick();
     }
 
-    //记录密码的借口
-    public interface OnInputPwdListener {
-        void onInputPwd(String pwd);
+    public void clear() {
+        setWholePathState(STATE_NORMAL);
+    }
+
+    @Override
+    public void invalidate() {
+        super.invalidate();
     }
 
     //解锁接口
@@ -326,5 +333,10 @@ public class LockView extends View {
         void onSuccess();
 
         void onFailure();
+    }
+
+    //记录密码的接口
+    public interface OnInputPwdListener {
+        void onInputPwd(String pwd);
     }
 }

@@ -28,6 +28,7 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver implements View.O
 
     private static final String TAG = ScreenBroadcastReceiver.class.getSimpleName();
     private ConstraintLayout floatWindow;
+    private LockView lockView;
 
 
     @Override
@@ -51,13 +52,17 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver implements View.O
     //悬浮窗模式的锁屏
     @SuppressLint("SetTextI18n")
     private void showFloatingWindow(Context context) {
+        if (floatWindow != null) floatWindow.setVisibility(View.VISIBLE);
+        else initFloatWindow(context);
+    }
+
+    private void initFloatWindow(Context context) {
         //获取WindowManager服务
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-
         floatWindow = (ConstraintLayout) LayoutInflater.from(context).inflate(R.layout.lock_window, null);
         Button btQuit = floatWindow.findViewById(R.id.bt_quit);
         btQuit.setOnClickListener(this);
-        LockView lockView = floatWindow.findViewById(R.id.lv);
+        lockView = floatWindow.findViewById(R.id.lv);
         lockView.setOnUnlockListener(this);
         Log.d("test", "test:" + LockScreenModel.getInstance().getPwd());
         if (LockScreenModel.getInstance().getPwd().equals("error"))
@@ -80,13 +85,16 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver implements View.O
 
     @Override
     public void onClick(View v) {
-        quit(v.getContext());
+        quit();
     }
 
-    private void quit(Context context) {
-        WindowManager windowManager =
+    private void quit() {
+        lockView.clear();
+        lockView.invalidate();
+        floatWindow.setVisibility(View.GONE);
+        /*WindowManager windowManager =
                 (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        if (windowManager != null) windowManager.removeViewImmediate(floatWindow);
+        if (windowManager != null) windowManager.removeViewImmediate(floatWindow);*/
     }
 
     @Override
@@ -97,7 +105,7 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver implements View.O
     @Override
     public void onSuccess() {
         Toast.makeText(floatWindow.getContext(), "unlock success", Toast.LENGTH_SHORT).show();
-        quit(floatWindow.getContext());
+        quit();
     }
 
     @Override
